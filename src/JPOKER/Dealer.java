@@ -1,3 +1,4 @@
+package JPOKER;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -23,6 +24,7 @@ public class Dealer {
 		}
 		return (cards.indexOf(hand1) > cards.indexOf(hand2)) ? cards.indexOf(hand1) : cards.indexOf(hand2) ;
 	}
+	
 	public static void main(String[] args) {
 		Dealer d = new Dealer();	
 		String p1[] = d.deck();
