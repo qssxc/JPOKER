@@ -29,7 +29,7 @@ public class GameTable {
 				}
 			}
 		});
-	}
+	} 
 
 	/**
 	 * Create the application.
@@ -50,5 +50,7 @@ public class GameTable {
 		JPanel panel = new JPanel();
 		frame.getContentPane().add(panel, BorderLayout.WEST);
 		panel.setLayout(new BorderLayout(0, 0));
+		
+		frame.setVisible(true);
 	}
 }

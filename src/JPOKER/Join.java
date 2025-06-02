@@ -132,6 +132,7 @@ public class Join {
 
 		            conn.close();
 		            frmJoin.dispose();
+		            Main.main(null);
 
 		        } catch (Exception ex) {
 		            ex.printStackTrace();
@@ -208,3 +209,4 @@ public class Join {
 		frmJoin.getContentPane().add(lblNewLabel_1);
 	}
 }
+
