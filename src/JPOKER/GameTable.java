@@ -15,6 +15,9 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.BoxLayout;
+import java.awt.Component;
+import java.awt.GridLayout;
 
 
 
@@ -33,6 +36,10 @@ public class GameTable {
 	private ImageIcon igp1d2;
 	private ImageIcon igp2d1;
 	private ImageIcon igp2d2;
+	private JPanel panelHand2;
+	private JPanel panel_2;
+	private JPanel Button;
+	private JButton btnNewButton;
 	/**
 	 * Launch the application.
 	 */
@@ -63,46 +70,66 @@ public class GameTable {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 747, 468);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		igp1d1 = null;
+		igp1d2 = null;
+		igp2d1 = null;
+		igp2d2 = null;
+		frame.getContentPane().setLayout(new BorderLayout(0, 0));
+		
+		panel_2 = new JPanel();
+		frame.getContentPane().add(panel_2, BorderLayout.CENTER);
+		panel_2.setLayout(new BoxLayout(panel_2, BoxLayout.X_AXIS));
+		
+		JPanel panelHand1 = new JPanel();
+		panel_2.add(panelHand1);
+		panelHand1.setLayout(new BoxLayout(panelHand1, BoxLayout.Y_AXIS));
+		
+		p1d1 = new JLabel("");
+		panelHand1.add(p1d1);
+		p1d1.setIcon(getimage(igp1d1));
+		
+		p2d1 = new JLabel("");
+		panelHand1.add(p2d1);
+		p2d1.setIcon(getimage(igp2d1));
+		
+		panelHand2 = new JPanel();
+		panel_2.add(panelHand2);
+		panelHand2.setLayout(new BoxLayout(panelHand2, BoxLayout.Y_AXIS));
+		
+		p1d2 = new JLabel("player1hand    ");
+		panelHand2.add(p1d2);
+		p1d2.setIcon(getimage(igp1d2));
+		
+		p2d2 = new JLabel("player2hand    ");
+		panelHand2.add(p2d2);
+		p2d2.setIcon(getimage(igp2d2));
+		
+		Button = new JPanel();
+		panel_2.add(Button);
+		Button.setLayout(new BoxLayout(Button, BoxLayout.Y_AXIS));
+		
+		btnNewButton = new JButton("패 오픈");
+		Button.add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setdeck(1);
+				setdeck(2);
+				setdeck(3);
+				setdeck(4);
+			}
+		});
 		
 		JButton btnDeck = new JButton("패섞기");
+		Button.add(btnDeck);
 		btnDeck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				p1deck = dealer.deck();
 				p2deck = dealer.deck();
-				p1d1.setIcon(getimage(igp1d1, (p1deck[0] +"C")));
-				p1d2.setIcon(getimage(igp1d2, (p1deck[1] +"H")));
-				p2d1.setIcon(getimage(igp2d1, (p2deck[0] +"S")));
-				p2d2.setIcon(getimage(igp2d2, (p2deck[1] +"D")));
+				setdeck(0);
+				setdeck(1);
+				setdeck(3);
 			}
 		});
-		btnDeck.setBounds(417, 341, 93, 23);
-		frame.getContentPane().add(btnDeck);
-		
-		p1d1 = new JLabel("player1hand1");
-		igp1d1 = null;
-		p1d1.setIcon(getimage(igp1d1));
-		p1d1.setBounds(50, 10, 150, 200);
-		
-		frame.getContentPane().add(p1d1);
-		
-		p1d2 = new JLabel("player1hand2");
-		igp1d2 = null;
-		p1d2.setIcon(getimage(igp1d2));
-		p1d2.setBounds(230, 10, 150, 200);
-		frame.getContentPane().add(p1d2);
-		
-		p2d1 = new JLabel("player2hand1");
-		igp2d1 = null;
-		p2d1.setIcon(getimage(igp2d1));
-		p2d1.setBounds(50, 220, 150, 200);
-		frame.getContentPane().add(p2d1);
-		
-		p2d2 = new JLabel("player2hand2");
-		igp2d2 = null;
-		p2d2.setIcon(getimage(igp2d2));
-		p2d2.setBounds(230, 220, 150, 200);
-		frame.getContentPane().add(p2d2);
 		
 		frame.setVisible(true);
 	}
@@ -119,6 +146,28 @@ public class GameTable {
 		cg = cg.getScaledInstance(150, 200, Image.SCALE_SMOOTH);
 		s = new ImageIcon(cg);
 		return s;
+	}
+	public void setdeck(int pd) {
+		switch (pd) {
+		case 1: 
+			p1d1.setIcon(getimage(igp1d1, (p1deck[0] +"C")));
+			break;
+		case 2:
+			p1d2.setIcon(getimage(igp1d2, (p1deck[1] +"H")));
+			break;
+		case 3:
+			p2d1.setIcon(getimage(igp2d1, (p2deck[0] +"S")));
+			break;
+		case 4:
+			p2d2.setIcon(getimage(igp2d2, (p2deck[1] +"D")));
+			break;
+		default:
+			p1d1.setIcon(getimage(igp1d1));
+			p1d2.setIcon(getimage(igp1d1));
+			p2d1.setIcon(getimage(igp1d1));
+			p2d2.setIcon(getimage(igp1d1));
+			break;
+		}
 	}
 }
 
