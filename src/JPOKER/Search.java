@@ -154,7 +154,8 @@ public class Search {
 		JButton btnBack = new JButton("돌아가기");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				frmSearch.dispose();
+				new Main();
 			}
 		});
 		btnBack.setForeground(new Color(0, 0, 0));
