@@ -90,11 +90,12 @@ public class Main {
 					ResultSet rs = stmt.executeQuery();
 					if (rs.next()) {
 						String playerName = rs.getString("name");
+						String playerId = rs.getString("player_id");
 						JOptionPane.showMessageDialog(frame, "로그인 성공! 환영합니다, " + rs.getString("name") + "님.");
 						conn.close();
 						
 						frame.dispose();
-						new Search(playerName);
+						new Search(playerName, playerId);
 						
 						rs.close();
 						stmt.close();
