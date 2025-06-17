@@ -118,7 +118,7 @@ public class Join {
 		                return;
 		            }
 
-		            String insertSql = "INSERT INTO player_info (player_id, password, name, email, win_rate) VALUES (?, ?, ?, ?, 0)";
+		            String insertSql = "INSERT INTO player_info (player_id, password, name, email) VALUES (?, ?, ?, ?)";
 		            PreparedStatement insertStmt = conn.prepareStatement(insertSql);
 		            insertStmt.setString(1, id);
 		            insertStmt.setString(2, pw);
@@ -209,4 +209,3 @@ public class Join {
 		frmJoin.getContentPane().add(lblNewLabel_1);
 	}
 }
-
