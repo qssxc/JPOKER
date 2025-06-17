@@ -1,5 +1,5 @@
 package JPOKER;
-
+ 
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -89,15 +89,24 @@ public class Main {
 
 					ResultSet rs = stmt.executeQuery();
 					if (rs.next()) {
+						String playerName = rs.getString("name");
 						JOptionPane.showMessageDialog(frame, "로그인 성공! 환영합니다, " + rs.getString("name") + "님.");
 						conn.close();
 						
 						frame.dispose();
-						new Search();
+						new Search(playerName);
+						
+						rs.close();
+						stmt.close();
+						conn.close();
+						
 					} else {
 						JOptionPane.showMessageDialog(frame, "아이디 또는 비밀번호가 일치하지 않습니다.");
+						rs.close();
+						stmt.close();
+						conn.close();
 					}
-					conn.close();
+					
 				} catch (Exception ex) {
 					ex.printStackTrace();
 					JOptionPane.showMessageDialog(frame, "DB 오류: " + ex.getMessage());
