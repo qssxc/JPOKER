@@ -26,9 +26,10 @@ public class Search {
 	private JButton btnSearch;
 	private JTextArea resultArea;
 	private String playerName;
+	private String playerId;
 	
 	public Search() {
-		this(null);
+		this(null, null);
 	}
 
 	/**
@@ -50,8 +51,9 @@ public class Search {
 	/**
 	 * Create the application.
 	 */
-	public Search(String playerName) {
+	public Search(String playerName, String playerId) {
 		this.playerName = playerName;
+		this.playerId = playerId;
 		initialize();
 		frmSearch.setVisible(true);
 	}
@@ -148,7 +150,7 @@ public class Search {
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frmSearch.dispose();
-				new GameTable();
+				new GameTable(playerId);
 			}
 		});
 		btnStart.setBackground(new Color(255, 0, 0));
