@@ -129,6 +129,14 @@ public class Join {
 		            JOptionPane.showMessageDialog(frmJoin, "회원가입이 완료되었습니다!\n\n이름: " + name +
 		                    "\nID: " + id +
 		                    "\n이메일: " + email, "회원가입 성공", JOptionPane.INFORMATION_MESSAGE);
+		            
+		            insertSql = "INSERT INTO game_info (Player_id, TotalGame, TotalWin, Money) VALUES (?, ?, ?, ?)";
+		            PreparedStatement insertStmt1 = conn.prepareStatement(insertSql);
+		            insertStmt1.setString(1, id);
+		            insertStmt1.setLong(2, 0);
+		            insertStmt1.setLong(3, 0);
+		            insertStmt1.setLong(4, 0);
+		            insertStmt1.executeUpdate();
 
 		            conn.close();
 		            frmJoin.dispose();
