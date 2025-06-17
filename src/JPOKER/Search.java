@@ -106,7 +106,7 @@ public class Search {
 					Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/JPOKER", "root", "0000");
 
 					// 검색
-					String sql = "SELECT * FROM player_info WHERE player_id = ?";
+					String sql = "SELECT player_info.name, player_info.email, game_info.TotalGame FROM player_info JOIN game_info ON player_info.player_id = game_info.player_id WHERE player_info.player_id = ?";
 					PreparedStatement pstmt = conn.prepareStatement(sql);
 					pstmt.setString(1, playerId);
 					ResultSet rs = pstmt.executeQuery();
@@ -115,9 +115,10 @@ public class Search {
 					if (rs.next()) {
 						String name = rs.getString("name");
 						String email = rs.getString("email");
+						int TotalGame = rs.getInt("TotalGame");
 
 						resultArea.setText("전적 검색 결과:\n\n" + "ID: " + playerId + "\n" + "이름: " + name + "\n" + "이메일: "
-								+ email);
+								+ email + "\n" +"게임 횟수: " + TotalGame);
 					} else {
 						resultArea.setText("해당 ID는 존재하지 않습니다.");
 					}
