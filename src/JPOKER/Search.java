@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -24,6 +25,11 @@ public class Search {
 	private JTextField idText;
 	private JButton btnSearch;
 	private JTextArea resultArea;
+	private String playerName;
+	
+	public Search() {
+		this(null);
+	}
 
 	/**
 	 * Launch the application.
@@ -44,7 +50,8 @@ public class Search {
 	/**
 	 * Create the application.
 	 */
-	public Search() {
+	public Search(String playerName) {
+		this.playerName = playerName;
 		initialize();
 		frmSearch.setVisible(true);
 	}
@@ -96,20 +103,19 @@ public class Search {
 
 					Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/JPOKER", "root", "0000");
 
-					// 검색 쿼리 실행
+					// 검색
 					String sql = "SELECT * FROM player_info WHERE player_id = ?";
 					PreparedStatement pstmt = conn.prepareStatement(sql);
 					pstmt.setString(1, playerId);
 					ResultSet rs = pstmt.executeQuery();
 
-					// 결과 처리
+					// 결과
 					if (rs.next()) {
 						String name = rs.getString("name");
 						String email = rs.getString("email");
-						double winRate = rs.getDouble("win_rate");
 
 						resultArea.setText("전적 검색 결과:\n\n" + "ID: " + playerId + "\n" + "이름: " + name + "\n" + "이메일: "
-								+ email + "\n" + "승률: " + winRate + "%");
+								+ email);
 					} else {
 						resultArea.setText("해당 ID는 존재하지 않습니다.");
 					}
@@ -164,9 +170,16 @@ public class Search {
 		btnBack.setBounds(12, 467, 164, 36);
 		frmSearch.getContentPane().add(btnBack);
 
-		JLabel lblNewLabel = new JLabel("JPOKER에 오신 걸 환영합니다!");
+		JLabel lblNewLabel = new JLabel();
 		lblNewLabel.setFont(new Font("SansSerif", Font.BOLD, 20));
-		lblNewLabel.setBounds(106, 10, 410, 36);
+		lblNewLabel.setBounds(106, 10, 600, 36);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+
+		String greeting = (playerName != null && !playerName.isEmpty())
+			? playerName + "님, JPOKER에 오신 걸 환영합니다!"
+			: "JPOKER에 오신 걸 환영합니다!";
+		lblNewLabel.setText(greeting);
+
 		frmSearch.getContentPane().add(lblNewLabel);
 	}
 }
