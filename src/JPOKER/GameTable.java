@@ -89,7 +89,7 @@ public class GameTable {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/JPOKER", "root", "0000");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/JPOKER", "root", "1234");
 
 			// 검색
 			String sql = "SELECT * FROM game_info WHERE Player_id = ?";
