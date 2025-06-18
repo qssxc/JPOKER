@@ -103,7 +103,7 @@ public class Search {
 				try {
 					Class.forName("com.mysql.cj.jdbc.Driver");
 
-					Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/JPOKER", "root", "0000");
+					Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/JPOKER", "root", "1234");
 
 					// 검색
 					String sql = "SELECT player_info.name, player_info.email, game_info.TotalGame FROM player_info JOIN game_info ON player_info.player_id = game_info.player_id WHERE player_info.player_id = ?";
