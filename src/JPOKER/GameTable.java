@@ -114,6 +114,7 @@ public class GameTable {
 			ex.printStackTrace();
 		}
 		initialize();
+		frame.setVisible(true);
 	}
 	public static GameTable getInstance(String playerid) {
         if (singleton == null) {
