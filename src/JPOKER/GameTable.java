@@ -394,7 +394,7 @@ public class GameTable {
 
 	public void saveGameData() {
 		try {
-			insertSql = "UPDATE playerinfo SET totalgame = ?, totalwin = ?, money = ? WHERE id = ?";
+			insertSql = "UPDATE player_info SET TotalGame = ?, TotalWin = ?, Money = ? WHERE Player_id = ?";
 			PreparedStatement insertStmt1 = conn.prepareStatement(insertSql);
 			insertStmt1.setLong(1, 0);
 			insertStmt1.setLong(2, 0);
