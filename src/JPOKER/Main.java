@@ -80,7 +80,7 @@ public class Main {
 				try {
 					Class.forName("com.mysql.cj.jdbc.Driver");
 					Connection conn = DriverManager.getConnection(
-						"jdbc:mysql://localhost:3306/JPOKER", "root", "0000");
+						"jdbc:mysql://localhost:3306/JPOKER", "root", "1234");
 
 					String sql = "SELECT * FROM player_info WHERE player_id = ? AND password = ?";
 					PreparedStatement stmt = conn.prepareStatement(sql);
