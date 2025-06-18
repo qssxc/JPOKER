@@ -149,8 +149,7 @@ public class Search {
 		JButton btnStart = new JButton("게임 시작");
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frmSearch.dispose();
-				new GameTable(playerId);
+				GameTable.getInstance(playerId);
 			}
 		});
 		btnStart.setBackground(new Color(255, 0, 0));

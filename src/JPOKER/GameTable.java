@@ -31,7 +31,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class GameTable {
-
+	private static GameTable singleton;
 	private Dealer dealer = new Dealer();
 
 	private JFrame frame;
@@ -115,6 +115,13 @@ public class GameTable {
 		}
 		initialize();
 	}
+	public static GameTable getInstance(String playerid) {
+        if (singleton == null) {
+        	singleton = new GameTable(playerid);
+        }
+        
+        return singleton;
+    }
 
 	/**
 	 * Initialize the contents of the frame.
@@ -122,7 +129,6 @@ public class GameTable {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 750, 460);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		igp1d1 = null;
 		igp1d2 = null;
 		igp2d1 = null;
